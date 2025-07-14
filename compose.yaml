@@ -21,11 +21,11 @@ services:
     image: mongo:latest
     container_name: tester-mongodb
     environment:
-      MONGO_INITDB_ROOT_USERNAME: heavenlymaster
-      MONGO_INITDB_ROOT_PASSWORD: jadebeauties
-      MONGO_INITDB_DATABASE: mongmurim_db
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootPassword
+      MONGO_INITDB_DATABASE: tester_db
     ports:
-      - "27778:27071"
+      - "27778:27017"
     volumes:
       - tester-mongodb:/data/db/mongodb
 
@@ -36,9 +36,9 @@ services:
     environment:
       POSTGRES_USER: demonking
       POSTGRES_PASSWORD: divinecultivation
-      POSTGRES_DB: postmurim_db
+      POSTGRES_DB: tester_db
     ports:
-      - "5114:5433"
+      - "5114:5432"
     volumes:
       - tester-postgresql:/data/db/postgresql
 
