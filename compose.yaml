@@ -1,10 +1,10 @@
 services:
-  web-app-php:
+  tester:
     build:
       context: .
-    container_name: web-app-php-service
+    container_name: tester-service
     ports:
-      - "8000:8000"
+      - "8080:8000"
     develop:
       watch:
         - path: .
@@ -19,31 +19,31 @@ services:
 
   mongodb:
     image: mongo:latest
-    container_name: web-app-php-mongodb
+    container_name: tester-mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootPassword
-      MONGO_INITDB_DATABASE: mydatabase
+      MONGO_INITDB_DATABASE: tester_db
     ports:
-      - "27111:27017"
+      - "27778:27017"
     volumes:
-      - web-app-php-mongodb:/data/db/mongodb
+      - tester-mongodb:/data/db/mongodb
 
   postgresql:
     image: postgres:15
-    container_name: web-app-php-postgresql
+    container_name: tester-postgresql
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydatabase
+      POSTGRES_USER: demonking
+      POSTGRES_PASSWORD: divinecultivation
+      POSTGRES_DB: tester_db
     ports:
-      - "5112:5432"
+      - "5114:5432"
     volumes:
-      - web-app-php-postgresql:/data/db/postgresql
+      - tester-postgresql:/data/db/postgresql
 
 volumes:
-  web-app-php-mongodb:
+  tester-mongodb:
     driver: local
-  web-app-php-postgresql:
+  tester-postgresql:
     driver: local
