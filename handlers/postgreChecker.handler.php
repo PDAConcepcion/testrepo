@@ -4,7 +4,7 @@ try {
     // Use port 5113 (external) mapped to 5433 (internal) as per compose.yaml
     $host = 'host.docker.internal';
     $port = '5114';
-    $dbname = 'postmurim_db';
+    $dbname = 'tester_db';
     $user = 'demonking';
     $password = 'divinecultivation';
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
