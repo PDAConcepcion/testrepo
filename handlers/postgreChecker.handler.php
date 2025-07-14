@@ -1,19 +1,17 @@
 <?php
-
-$host = "host.docker.internal"; 
-$port = "5112";
-$username = "user";
-$password = "password";
-$dbname = "mydatabase";
-
-$conn_string = "host=$host port=$port dbname=$dbname user=$username password=$password";
-
-$dbconn = pg_connect($conn_string);
-
-if (!$dbconn) {
-    echo "❌ Connection Failed: ", pg_last_error() . "  <br>";
-    exit();
-} else {
-    echo "✔️ PostgreSQL Connection  <br>";
-    pg_close($dbconn);
+// PostgreSQL connection checker
+try {
+    // Use port 5113 (external) mapped to 5433 (internal) as per compose.yaml
+    $host = 'host.docker.internal';
+    $port = '5114';
+    $dbname = 'postmurim_db';
+    $user = 'demonking';
+    $password = 'divinecultivation';
+    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
+    echo "✅ PostgreSQL Connection";
+} catch (Exception $e) {
+    echo "❌ Connection Failed: " . $e->getMessage();
 }
